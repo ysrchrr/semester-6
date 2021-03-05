@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title> {{.Judul}} - UDB</title>
+    </head>
+    <body>
+        <h2 align="center"> {{.Judul}}</h2>
+        <p> {{.Deskripsi}}</p>
+        <p>Cetak Array</p>
+        <p>{{.Progdi}}</p>
+        <p>Cetak per item</p>
+        {{range .Progdi}}
+        {{.Jenjang}} - {.{Nama}} <br/>
+        {{end}}
+    </body>
+</html>
