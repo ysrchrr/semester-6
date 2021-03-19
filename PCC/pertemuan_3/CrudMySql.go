@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 type mahasiswa struct {
@@ -159,7 +161,7 @@ func tambah(nim string, nama string, progdi string, smt string) response {
 
 	return response{
 		Status: true,
-		Pesan:  "Berhasil ubah",
+		Pesan:  "Berhasil tambah",
 		Data:   []mahasiswa{},
 	}
 }
@@ -175,7 +177,7 @@ func ubah(nim string, nama string, progdi string, smt string) response {
 	}
 	defer db.Close()
 
-	_, salahe = db.Exec("UPDATE mahasiswa SET nama=?, progdi=?, nim=?", nim, nama, progdi, smt)
+	_, salahe = db.Exec("update mahasiswa set nama=?, progdi=?, smt=? where nim=?", nama, progdi, smt, nim)
 	if salahe != nil {
 		return response{
 			Status: false,
@@ -186,7 +188,7 @@ func ubah(nim string, nama string, progdi string, smt string) response {
 
 	return response{
 		Status: true,
-		Pesan:  "Berhasil tambah",
+		Pesan:  "Berhasil ubah",
 		Data:   []mahasiswa{},
 	}
 }
